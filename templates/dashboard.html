@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — BlindSpot{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <div>
+        <h1>Hello, {{ user["name"] }}</h1>
+        <p class="lead">Welcome to BlindSpot. Here you'll manage your security checks.</p>
+      </div>
+      <a class="btn btn-primary" href="{{ url_for('scan') }}">New Scan</a>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-stack" role="status">
+          {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <section class="section-block" aria-labelledby="recent-heading">
+      <h2 id="recent-heading">Recent Scans</h2>
+      {% if scans %}
+        <table class="scans-table">
+          <thead>
+            <tr>
+              <th scope="col">Website</th>
+              <th scope="col">Score</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for scan in scans %}
+              <tr>
+                <td><a href="{{ url_for('results', scan_id=scan['id']) }}">{{ scan["website_url"] }}</a></td>
+                <td>{{ scan["score"] }}/100</td>
+                <td>{{ scan["created_at"] }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="muted">You haven't run any scans yet. Click "New Scan" to run your first security check.</p>
+      {% endif %}
+    </section>
+  </div>
+</section>
+
+{% endblock %}

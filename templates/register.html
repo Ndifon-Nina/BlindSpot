@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Create an account — BlindSpot{% endblock %}
+
+{% block content %}
+
+<section class="auth">
+  <div class="auth-card">
+    <h1>Create your account</h1>
+    <p class="auth-sub">Free, with no credit card. Start scanning websites you own.</p>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert" role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" action="{{ url_for('register') }}" class="form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" autocomplete="name" required>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="new-password" required>
+      </div>
+
+      <div class="field">
+        <label for="password_confirm">Confirm password</label>
+        <input type="password" id="password_confirm" name="password_confirm" autocomplete="new-password" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Create account</button>
+    </form>
+
+    <p class="auth-switch">Already have an account? <a href="{{ url_for('login') }}">Log in</a>.</p>
+  </div>
+</section>
+
+{% endblock %}

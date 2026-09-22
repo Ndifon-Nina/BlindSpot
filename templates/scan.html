@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}New Scan — BlindSpot{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <div>
+        <h1>New Security Check</h1>
+        <p class="lead">Enter a website you own or have permission to test.</p>
+      </div>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert" role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <section class="section-block">
+      <form method="post" action="{{ url_for('scan') }}" class="form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div class="field">
+          <label for="url">Website URL</label>
+          <input type="text" id="url" name="url" value="{{ url }}" placeholder="https://example.com" required>
+        </div>
+
+        <div class="field">
+          <label class="checkbox-label">
+            <input type="checkbox" name="permission" value="yes" required>
+            <span>I own this website or have permission to test it.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Start Scan</button>
+      </form>
+      <p class="muted scan-note">BlindSpot only runs safe, read-only checks. It never tries to break into a website.</p>
+    </section>
+  </div>
+</section>
+
+{% endblock %}

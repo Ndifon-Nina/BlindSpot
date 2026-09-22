@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Security Tips — BlindSpot{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Security tips, in plain English</h1>
+    <p class="lead">Short explanations that build your security vocabulary — one bite at a time.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow">
+    <article class="tip">
+      <h2>What is HTTPS?</h2>
+      <p>HTTPS encrypts the connection between a visitor's browser and your website. Without it, anyone on the same network could read the data passing between them. Look for the padlock icon in the browser — that means HTTPS is on.</p>
+    </article>
+
+    <article class="tip">
+      <h2>What is a security header?</h2>
+      <p>Security headers are small settings a web server sends with every page. They tell the browser how to behave more safely — for example, not to guess file types or not to allow your site to be embedded inside another site. Missing them isn't an attack, but it leaves doors unlocked.</p>
+    </article>
+
+    <article class="tip">
+      <h2>Why is a <code>.env</code> file dangerous?</h2>
+      <p>A <code>.env</code> file holds configuration — often secret keys, API tokens, or database settings. It belongs on the server only. If it's reachable from the internet, those secrets leak to anyone who asks. This is one of the most common accidental exposures.</p>
+    </article>
+
+    <article class="tip">
+      <h2>What is directory listing?</h2>
+      <p>If directory listing is enabled, someone who visits your site's folder address can see all the files inside it, like a big open filing cabinet. It may reveal backup files, source code, or internal documents that were never meant to be public.</p>
+    </article>
+
+    <article class="tip">
+      <h2>Why should you protect your API keys?</h2>
+      <p>An API key is like a keycard to a building. If it's pasted into code, committed to a public repository, or exposed in a config file, anyone who finds it can use it — often for free with your bill. Treat keys as secrets and keep them out of code and page source.</p>
+    </article>
+
+    <article class="tip">
+      <h2>Why do errors matter?</h2>
+      <p>When something goes wrong, a website can print detailed error messages with database names, file paths, or stack traces. That's useful for fixing bugs but also hands attackers a map of your system. Friendly, vague errors are better.</p>
+    </article>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container cta-inner">
+    <h2>See if your site has these problems</h2>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">Start a security check</a>
+  </div>
+</section>
+
+{% endblock %}

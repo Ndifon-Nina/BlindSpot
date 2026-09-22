@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}How It Works — BlindSpot{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <h1>How BlindSpot works</h1>
+    <p class="lead">Three simple steps between you and a clearer picture of your website's security.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow">
+    <ol class="steps steps-stacked">
+      <li>
+        <span class="step-num">1</span>
+        <h2>Enter a website URL</h2>
+        <p>Create a free account, then enter the address of a website you own — or have written permission to test. You'll confirm that permission before the scan runs.</p>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <h2>BlindSpot runs its checks</h2>
+        <p>BlindSpot performs a set of safe, read-only checks against the public parts of the website. It looks at headers, responses, and publicly reachable pages.</p>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <h2>Get a clear report</h2>
+        <p>You receive a simple security score and a list of findings. Each finding shows how serious it is, why it matters, and exactly what to do about it.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container narrow">
+    <h2>What BlindSpot does <em>not</em> do</h2>
+    <ul class="prose-list">
+      <li><strong>No attacks.</strong> BlindSpot never tries to break into a website or exploit a vulnerability.</li>
+      <li><strong>No password guessing.</strong> It doesn't attempt to log in or crack anything.</li>
+      <li><strong>No downloads of your data.</strong> It only checks whether a resource is publicly reachable.</li>
+      <li><strong>No scanning without permission.</strong> Authorized checks only — always.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container cta-inner">
+    <h2>Ready to run your first check?</h2>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">Create a free account</a>
+  </div>
+</section>
+
+{% endblock %}

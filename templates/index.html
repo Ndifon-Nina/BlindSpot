@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}BlindSpot — Find Security Problems You Didn't Know You Had{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="container hero-inner">
+    <h1>Find the security problems you didn't know you had.</h1>
+    <p class="lead">BlindSpot runs friendly checks on websites you own — looking for missing security headers, exposed files, and accidental leaks — then explains each finding in plain English and tells you how to fix it.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">Start a free security check</a>
+      <a class="btn btn-secondary btn-lg" href="{{ url_for('how_it_works') }}">See how it works</a>
+    </div>
+    <p class="hero-trust">Free for authorized checks &middot; No credit card &middot; Plain-English reports</p>
+  </div>
+</section>
+
+<section class="proof-bar" aria-label="Quick facts">
+  <div class="container proof-grid">
+    <div><span class="stat">8</span><span class="stat-label">security checks</span></div>
+    <div><span class="stat">Plain</span><span class="stat-label">English report</span></div>
+    <div><span class="stat">Fix</span><span class="stat-label">steps included</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Know what's exposed before someone else does</h2>
+    <p class="section-lead">Most security problems aren't sophisticated attacks. They're old test pages, exposed config files, or missing settings that nobody noticed — until it mattered.</p>
+
+    <div class="cards">
+      <article class="card">
+        <h3>Find accidental leaks</h3>
+        <p>BlindSpot checks for exposed resources like <code>.env</code> files, backup archives, and leftover test pages that should never be public.</p>
+      </article>
+      <article class="card">
+        <h3>Understand each risk</h3>
+        <p>Every finding includes why it matters and what could happen, so you learn as you fix, not just get a scary score.</p>
+      </article>
+      <article class="card">
+        <h3>Get clear next steps</h3>
+        <p>Each finding ends with a simple recommendation anyone can follow — even without a security background.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><span class="step-num">1</span><h3>Enter a website URL</h3><p>Use a site you own or have written permission to test.</p></li>
+      <li><span class="step-num">2</span><h3>BlindSpot runs its checks</h3><p>HTTPS, security headers, exposed resources, directory listing, error leakage, and cookies.</p></li>
+      <li><span class="step-num">3</span><h3>Get your report</h3><p>A clear score, a list of findings with severity, and fix-it steps for each one.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>What BlindSpot checks</h2>
+    <div class="feature-grid">
+      <div class="feature"><h3>HTTPS</h3><p>Is the connection encrypted?</p></div>
+      <div class="feature"><h3>Security headers</h3><p>Are important protections enabled?</p></div>
+      <div class="feature"><h3>Exposed resources</h3><p>Are sensitive files publicly reachable?</p></div>
+      <div class="feature"><h3>Directory listing</h3><p>Can anyone browse your file folders?</p></div>
+      <div class="feature"><h3>Information leakage</h3><p>Do errors reveal too much detail?</p></div>
+      <div class="feature"><h3>Cookie security</h3><p>Are cookies protected from common attacks?</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container narrow">
+    <h2>Common questions</h2>
+
+    <details class="faq">
+      <summary>Is BlindSpot a hacking tool?</summary>
+      <p>No. BlindSpot only runs passive, read-only checks. It never tries to break in, and it's designed for websites you own or have explicit permission to test.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Do I need to know security to use it?</summary>
+      <p>No. Every result is written in plain English, with a simple severity label and step-by-step fix suggestions.</p>
+    </details>
+
+    <details class="faq">
+      <summary>What does the score mean?</summary>
+      <p>It's the BlindSpot Basic Security Score — based only on the checks we run. It's a starting point for your security journey, not a full audit.</p>
+    </details>
+
+    <details class="faq">
+      <summary>What if a website isn't mine?</summary>
+      <p>Don't scan it. BlindSpot is for authorized checks only — your own websites or ones you have written permission to test.</p>
+    </details>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container cta-inner">
+    <h2>Know before something bad happens.</h2>
+    <p>Run your first free security check in under a minute.</p>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">Start a free security check</a>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Scan Results — BlindSpot{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+  <div class="container">
+    <div class="dashboard-header">
+      <div>
+        <h1>Scan Results</h1>
+        <p class="lead">{{ scan["website_url"] }}</p>
+      </div>
+      <a class="btn btn-primary" href="{{ url_for('scan') }}">New Scan</a>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert" role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <section class="score-card" aria-labelledby="score-heading">
+      <h2 id="score-heading">BlindSpot Basic Security Score</h2>
+      <p class="score-number">{{ scan["score"] }}/100</p>
+      <p class="muted">This score is based only on the checks performed by BlindSpot.</p>
+    </section>
+
+    <section class="section-block" aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Findings Summary</h2>
+      <div class="summary-grid">
+        <div class="summary-item"><span class="summary-count">{{ high }}</span><span class="muted">High</span></div>
+        <div class="summary-item"><span class="summary-count">{{ medium }}</span><span class="muted">Medium</span></div>
+        <div class="summary-item"><span class="summary-count">{{ low }}</span><span class="muted">Low</span></div>
+      </div>
+    </section>
+
+    {% if findings %}
+      <section class="section-block" aria-labelledby="findings-heading">
+        <h2 id="findings-heading">Findings</h2>
+        {% for finding in findings %}
+          <article class="finding finding-{{ finding['severity']|lower }}">
+            <div class="finding-top">
+              <span class="badge badge-{{ finding['severity']|lower }}">{{ finding["severity"] }}</span>
+              <h3>{{ finding["title"] }}</h3>
+            </div>
+            <p><strong>Why it matters:</strong> {{ finding["description"] }}</p>
+            <p><strong>What to do:</strong> {{ finding["recommendation"] }}</p>
+          </article>
+        {% endfor %}
+      </section>
+    {% else %}
+      <section class="section-block">
+        <h2>No findings</h2>
+        <p class="muted">BlindSpot didn't find any of the issues it checks for. That's a good sign — but it's not a guarantee of complete security.</p>
+      </section>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
